@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Let's code</title>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+
+  <div class="nav">
+
+    <div class="container">
+      <ul class="pull-right">
+
+        <li> <%= link_to "Courses", courses_path%> </li>
+        <li> <%= link_to "Create", new_course_path %> </li>
+
+        <% if !logged_in? %>
+
+          <li> <%= link_to "Login", login_path %> </li>
+          <li> <%= link_to "Signup", signup_path %> </li>
+
+        <% else %>
+          
+          <li> <%= link_to @current_user.to_s, @current_user %> </li>
+          <li> <%= link_to "Logout", logout_path, method: 'delete' %>
+
+        <% end %>
+      </ul>
+      <ul class="pull-left">
+        <h1> Let's code! </h1>
+      </ul>
+    </div>
+  </div>
+
+
+<%= yield %>
+
+<div class="footer">
+    <div class="container">
+      <p>&copy; Vadim Voloshin</p>
+    </div>
+</div>
+
+</body>
+</html>
