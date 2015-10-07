@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task_id: 1
+  user_id: 1
+  lang: MyString
+  code: MyText
+  status: MyString
+
+two:
+  task_id: 1
+  user_id: 1
+  lang: MyString
+  code: MyText
+  status: MyString

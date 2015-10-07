@@ -4,6 +4,7 @@
     <div class="row">
       <div class="col-lg-7">
     <h1> Sign Up</h1>
+    <div class="flash"> <%= flash[:notice] %></div>
     <%= form_for @user do |t| %>
         <%= t.label :first_name %> </br>
         <%= t.text_field :first_name, class: "form-control"%></br>

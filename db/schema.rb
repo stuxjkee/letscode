@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005202922) do
+ActiveRecord::Schema.define(version: 20151007060110) do
 
   create_table "courses", force: true do |t|
     t.string   "title"
@@ -23,12 +23,22 @@ ActiveRecord::Schema.define(version: 20151005202922) do
     t.string   "img"
   end
 
-  create_table "tasks", force: true do |t|
-    t.string   "title"
-    t.text     "condition"
+  create_table "solutions", force: true do |t|
+    t.integer  "task_id"
+    t.integer  "user_id"
+    t.string   "lang"
+    t.text     "code"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "tasks", force: true do |t|
+    t.string   "title"
+    t.text     "condition"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "topic_id"
   end
 
   create_table "tests", force: true do |t|
@@ -37,14 +47,11 @@ ActiveRecord::Schema.define(version: 20151005202922) do
     t.text     "true_output"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "task_id"
   end
 
-  create_table "topics", force: true do |t|
-    t.string   "title"
-    t.text     "code"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+# Could not dump table "topics" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "users", force: true do |t|
     t.string   "username"

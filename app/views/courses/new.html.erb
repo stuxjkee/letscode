@@ -9,11 +9,19 @@
         <%= t.text_field :title, class: "form-control"%></br>
         <%= t.label :description %></br>
         <%= t.text_field :description, class: "form-control"%></br>
-            <%= t.label :image %> </br>
-            <%= t.text_field :img, class: "form-control"%> </br>
+        <%= t.label :image %> </br>
+        <%= t.text_field :img, class: "form-control"%> </br>
         <%= t.submit "Create", class: "btn" %>
     <% end %>
       </div>
+      <div class="col-lg-2">
+        <%= link_to "Create topic", controller: "topics",  action: "new" %>
+      </div>
+      <div class="col-lg-2">
+
+        <%= select("post", "topic_id", Topic.all.collect {|p| [p.title, p.id]}, { include_blank: true}) %>
+
+        </div>
     </div>
   </div>
 

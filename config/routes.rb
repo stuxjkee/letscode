@@ -6,10 +6,14 @@ Letscode::Application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+  post 'tasks/new_test' => 'tasks#create_test', as: :create_test
+  get 'tasks/new_test' => 'tasks#new_test'
+  resources :tasks
   resources :users
-  
+  resources :solutions
   resources :courses
   resources :topics
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

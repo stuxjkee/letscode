@@ -1,0 +1,5 @@
+<div class="container">
+  <h1> <%= @task.title %> </h1>
+  <p> <%= @task.condition %> </p>
+  <%= link_to "Submit", controller: "solutions", action: "new", task_id: @task.id %>
+</div>

@@ -1,0 +1,26 @@
+
+<div class="form">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-7">
+        <h1> Tasks </h1>
+        <%= form_for @task do |f| %>
+            <%= f.label :title %> </br>
+            <%= f.text_field :title, class: "form-control"%> </br>
+            <%= f.label :condition %> </br>
+            <%= f.text_area :condition, class: "form-control" %> </br>
+
+            <%= f.submit "Create", class: 'btn' %>
+        <% end %>
+      </div>
+
+      <div class="col-lg-2">
+        <%= link_to "Create test", controller: "tasks", action: "new_test"%>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>

@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
   end
 
   def show
-
+    @topic = Topic.find(params[:id])
   end
 
   def destroy
@@ -20,21 +20,18 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @topic = Topic.create(topic_params)
-    @topic.task.create(task_params)
-    @topic.task.tests.create(test_params)
+    @course = Course.find(params[:topic][:course_id])
+    @topic = @course.topics.create(topic_params)
+
+    if @topic.save
+      redirect_to @course
+    else
+      redirect_to 'tasks/new'
+    end
   end
 
   private
   def topic_params
-    params.require(:topic).permit(:title, :code, :task)
-  end
-  private
-  def task_params
-    params.require(:task).permit(:title, :condition, :tests)
-  end
-  private
-  def test_params
-    params.require(:test).permit(:input, :true_output)
+    params.require(:topic).permit(:title, :code, :course_id)
   end
 end

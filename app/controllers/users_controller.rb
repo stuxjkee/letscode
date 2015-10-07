@@ -9,6 +9,7 @@ class UsersController < ApplicationController
       log_in @user
       redirect_to '/'
     else
+      flash[:notice] = "Invalid fields. Try again. "
       redirect_to '/signup'
     end
   end

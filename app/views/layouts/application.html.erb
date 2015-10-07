@@ -15,26 +15,33 @@
   <div class="nav">
 
     <div class="container">
+      <ul class="pull-left">
+        <h1> Codeland </h1>
+      </ul>
+      <ul class="pull-right">
+        <% if !logged_in? %>
+
+          <li> <%= link_to "Sign in", login_path %> </li>
+          <li> <%= link_to "Sign up", signup_path %> </li>
+
+        <% else %>
+          
+         
+          <li> <%= link_to "Profile", current_user %> </li>
+          <li> <%= link_to "Logout", logout_path, method: 'delete' %> </li>
+           
+
+        <% end %>
+      </ul>
       <ul class="pull-right">
 
         <li> <%= link_to "Courses", courses_path%> </li>
         <li> <%= link_to "Create", new_course_path %> </li>
+        <li> <%= link_to "Tasks", '#' %></li>
+        <li> <%= link_to "About", '#' %></li>
 
-        <% if !logged_in? %>
-
-          <li> <%= link_to "Login", login_path %> </li>
-          <li> <%= link_to "Signup", signup_path %> </li>
-
-        <% else %>
-          
-          <li> <%= link_to @current_user.to_s, @current_user %> </li>
-          <li> <%= link_to "Logout", logout_path, method: 'delete' %>
-
-        <% end %>
       </ul>
-      <ul class="pull-left">
-        <h1> Let's code! </h1>
-      </ul>
+      
     </div>
   </div>
 

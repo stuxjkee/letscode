@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
+  has_many :solutions
   has_and_belongs_to_many :courses
   validates :password, length: {minimum: 6}
+  validates :email, presence: true, uniqueness: true
 
   has_secure_password
   def to_s

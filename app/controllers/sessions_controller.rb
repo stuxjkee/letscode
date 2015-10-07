@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   		log_in user
   		redirect_to '/'
   	else
-  		flash[:danger] = 'Invalid email/password'
+  		flash[:notice] = 'Invalid email/password'
   		redirect_to login_path
   	end
   end
