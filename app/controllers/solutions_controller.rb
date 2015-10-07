@@ -15,7 +15,12 @@ class SolutionsController < ApplicationController
 
     if pascal_compile(@solution.code)
       @solution.status = "Running"
-      /TODO: run program/
+      Thread.new do
+        passed = run(@task.tests)
+        @solution.status = "#{passed} tests pased"
+        @solution.save
+      end
+
     else
       @solution.status = "Compilation error"
     end
@@ -40,7 +45,16 @@ class SolutionsController < ApplicationController
     `fpc task.pas`.include?"lines compiled"
   end
 
-  def run
-    
+  private
+  def run(tests)
+    passed = 0
+    `chmod +x script.sh`
+    tests.all.each do |test|
+      File.open("input.txt", "w") { |file| file.puts test.input }
+      File.open("true_output.txt", "w") { |file| file.puts test.true_output }
+      `./script.sh`
+      passed = passed + 1 if IO.read('output.txt') === IO.read('true_output.txt')
+    end
+    passed
   end
 end
