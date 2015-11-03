@@ -8,9 +8,13 @@
   </div>
 </div>
 
-<div class="task" align="center">
+<div class="tasks" align="center">
 
-  <%= link_to "Task", task_path(@topic.tasks.first)%>
+  <% @topic.tasks.each do |task| %>
+      <%= link_to task.title, task%>
+  <% end %>
+
+
 
 </div>
 

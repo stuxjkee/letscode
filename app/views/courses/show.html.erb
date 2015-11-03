@@ -1,28 +1,39 @@
 <div class="container" align="center">
-    <h1> <%= @course.title %> </h1>
-    <h3> <%= @course.description %> </h3>
+    <h1> Course preview </h1>
 </div>
+
+<% course_progress = CourseProgress.where(course_id: @course.id, user_id: current_user.id) %>
 
 <div class="container">
-  
 
   <div class="container">
-  	<h2 align="center"> Topics </h2>
-  	<table class="table">
-  		<thead>
-  			<th> Title </th>
-  			<th> Status </th>
-  		</thead>
-  		<tbody>
-    	<% @topics.each do |topic| %>
-    		<tr>
-        		<td> <%= link_to topic.title, topic %> </td>
-        		<td> <%= topic.status %></td>
-        	</tr>
-    	<% end %>
-    	</tbody>
-    </table>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="container">
+            <h2> <%= @course.title %> </h2>
+            <p> <%= @course.description %> </p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="containe">
+          <h2> Topics </h2>
+          <table class="table">
+            <tbody>
+                <% @course.topics.each do |topic| %>
+                <tr class="warning">
+                  <td> <%= link_to topic.title, topic %></td>
+                </tr>
+                <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+
+      <!-- start/continue button, course_progress-->
+    </div>
   </div>
-  	
 
 </div>
+

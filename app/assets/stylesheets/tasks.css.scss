@@ -1,3 +1,15 @@
 // Place all the styles related to the tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.info td{
+  background-color: rgba(94, 33, 10, .2) !important;
+}
+
+.danger td{
+  background-color: rgba(12, 94, 0, .2) !important;
+}
+
+.warning td{
+  background-color: rgba(102, 105, 85, .2) !important;
+}

@@ -16,19 +16,19 @@
 
     <div class="container">
       <ul class="pull-left">
-        <h1> Codeland </h1>
+        <h1> <%= link_to "Let's code", '/' %> </h1>
       </ul>
       <ul class="pull-right">
-        <% if !logged_in? %>
+        <% if logged_in? %>
 
-          <li> <%= link_to "Sign in", login_path %> </li>
-          <li> <%= link_to "Sign up", signup_path %> </li>
+            <li> <%= link_to "Profile", current_user %> </li>
+            <li> <%= link_to "Logout", logout_path, method: 'delete' %> </li>
 
         <% else %>
           
-         
-          <li> <%= link_to "Profile", current_user %> </li>
-          <li> <%= link_to "Logout", logout_path, method: 'delete' %> </li>
+
+            <li> <%= link_to "Sign in", login_path %> </li>
+            <li> <%= link_to "Sign up", signup_path %> </li>
            
 
         <% end %>
@@ -36,8 +36,10 @@
       <ul class="pull-right">
 
         <li> <%= link_to "Courses", courses_path%> </li>
-        <li> <%= link_to "Create", new_course_path %> </li>
-        <li> <%= link_to "Tasks", '#' %></li>
+        <% if current_user && (current_user.editor? || current_user.admin?) %>
+                <li> <%= link_to "Create", new_course_path%> </li>
+        <% end %>
+        <li> <%= link_to "Tasks", tasks_path %></li>
         <li> <%= link_to "About", '#' %></li>
 
       </ul>
@@ -53,6 +55,5 @@
       <p>&copy; Vadim Voloshin</p>
     </div>
 </div>
-
 </body>
 </html>

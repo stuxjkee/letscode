@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   def index
+    @tasks = Task.all
   end
 
   def show
@@ -41,6 +42,16 @@ class TasksController < ApplicationController
       redirect_to 'tasks/new_test'
     end
 
+  end
+
+  def statistic
+    @task = Task.find(params[:id])
+    @success_solutions = @task.solutions.where(status: "success")
+
+    respond_to do |format|
+      format.json
+      format.html
+    end
   end
 
   private

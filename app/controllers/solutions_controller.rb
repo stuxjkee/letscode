@@ -2,6 +2,7 @@ class SolutionsController < ApplicationController
   def new
     @task = Task.find(params[:task_id])
     @solution = Solution.new
+
   end
 
   def show
@@ -39,13 +40,12 @@ class SolutionsController < ApplicationController
     params.require(:solution).permit(:lang, :code)
   end
 
-  private
   def pascal_compile(code)
     File.open('task.pas', 'w') { |file| file.puts(code)}
     `fpc task.pas`.include?"lines compiled"
   end
 
-  private
+
   def run(tests)
     passed = 0
     `chmod +x script.sh`
@@ -53,7 +53,7 @@ class SolutionsController < ApplicationController
       File.open("input.txt", "w") { |file| file.puts test.input }
       File.open("true_output.txt", "w") { |file| file.puts test.true_output }
       `./script.sh`
-      passed = passed + 1 if IO.read('output.txt') === IO.read('true_output.txt')
+      passed += 1 if IO.read('output.txt') === IO.read('true_output.txt')
     end
     passed
   end

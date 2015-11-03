@@ -1,1 +1,5 @@
-<h1> <%= @solution.status %></h1>
+<div class="container">
+    <h1> User - <%= User.find(@solution.user_id).to_s %></h1>
+    <h2> Task - <%= Task.find(@solution.task_id).title %> </h2>
+    <h2> Status - <%= @solution.status %></h2>
+</div>

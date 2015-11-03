@@ -4,4 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
+  def require_editor
+    redirect_to '/' unless current_user.editor?
+  end
+
+  def require_login
+    redirect_to '/login' unless current_user
+  end
+
 end
