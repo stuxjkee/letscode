@@ -5,13 +5,14 @@
 
       <div class="col-lg-7">
         <h1> Tasks </h1>
-        <%= form_for @task do |f| %>
-            <%= f.label :title %> </br>
-            <%= f.text_field :title, class: "form-control"%> </br>
-            <%= f.label :condition %> </br>
-            <%= f.text_area :condition, class: "form-control" %> </br>
+        <%= bootstrap_form_for @task, layuot: :horizontal do |f| %>
+            <%= f.text_field :title%>
+            <%= f.text_area :condition%>
 
-            <%= f.submit "Create", class: 'btn' %>
+            <%= f.select :topic_id, Topic.all.collect {|p| [p.title, p.id]}, {label: "Belongs to topic"} %>
+
+
+            <%= f.submit "Create" %>
         <% end %>
       </div>
 

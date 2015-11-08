@@ -1,14 +1,20 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
       <h2>
-        <%= link_to "Task", @task%>
-        statistic
-      </br>
+        <%= link_to @task.title, @task%> statistic
       </h2>
     </div>
   </div>
   <div class="row">
-    <p> <%= @success_solutions.count %> succesed solutions</p>
+    <div class="col-md-5">
+    <p>
+      Success solutions: <%= @task.success_solutions.count %> </br>
+      <% if @task.success_solutions.last %>
+        Last success solutions: <%= link_to @task.success_solutions.last.user.to_s, @task.success_solutions.last.user %> </br>
+      <% end %>
+          Failed solutions: <%= @task.failed_solutions.count %> </br>
+    </p>
+    </div>
   </div>
 </div>

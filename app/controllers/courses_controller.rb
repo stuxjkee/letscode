@@ -12,7 +12,7 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @course_progress = CourseProgress.new(user_id: current_user.id, course_id: @course.id, progress: 0, current_topic_id: @course.topics.first.id)
     if @course_progress.save
-      redirect_to '/'
+      redirect_to @course.topics.first
     else
       redirect_to '/'
     end

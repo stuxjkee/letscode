@@ -2,38 +2,44 @@
     <h1> Course preview </h1>
 </div>
 
-<% course_progress = CourseProgress.where(course_id: @course.id, user_id: current_user.id) %>
+<% progress = course_progress(@course.id, current_user.id) %>
 
 <div class="container">
 
   <div class="container">
     <div class="row">
-      <div class="col-lg-6">
+      <div class="col-lg-4">
         <div class="container">
             <h2> <%= @course.title %> </h2>
             <p> <%= @course.description %> </p>
         </div>
       </div>
-      <div class="col-lg-6">
-        <div class="containe">
+      <div class="col-lg-5 col-lg-offset-3">
           <h2> Topics </h2>
           <table class="table">
             <tbody>
                 <% @course.topics.each do |topic| %>
-                <tr class="warning">
+                <% tclass = "warning" %>
+                <% tclass = "danger" if progress && topic == progress.current_topic %>
+                <tr class="<%=tclass%>">
                   <td> <%= link_to topic.title, topic %></td>
                 </tr>
                 <% end %>
             </tbody>
           </table>
-        </div>
+
       </div>
     </div>
-    <div class="row">
+    <div class="col-centered col-sm-offset-5">
+
+      <% if progress %>
+        <%= link_to "Continue" , progress.current_topic, class: "btn btn-primary btn-large"%>
+      <% else %>
+        <%= link_to 'Start', start_course_path, method: :post, class: "btn btn-primary btn-large"%>
+      <% end %>
 
       <!-- start/continue button, course_progress-->
     </div>
   </div>
 
 </div>
-

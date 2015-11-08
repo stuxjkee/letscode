@@ -15,3 +15,9 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+
+
+$('.selectpicker').selectpicker({
+    style: 'btn-info',
+    size: 4
+});

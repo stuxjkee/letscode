@@ -1,7 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap_form'
+
+gem 'bootstrap-sass', '~> 3.3.5'
+
 gem 'autoprefixer-rails'
+
+gem 'bootstrap-select-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
@@ -37,6 +42,7 @@ end
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
+
 
 # Use unicorn as the app server
 # gem 'unicorn'

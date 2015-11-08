@@ -1,18 +1,21 @@
 
 <div class="form">
   <div class="container">
-    <div class="row">
 
-      <div class="col-lg-7">
-        <h1> New test </h1>
-        <%= form_for create_test_path do |f| %>
-            <%= f.label :input %> </br>
-            <%= f.text_field :input, class: "form-control"%> </br>
-            <%= f.label :true_output %> </br>
-            <%= f.text_area :true_output, class: "form-control" %> </br>
-            <%= f.submit "Create", class: 'btn' %>
+    <div class="col-lg-4 col-md-4 col-sm-4">
+
+        <%= bootstrap_form_for new_test_path do |f| %>
+            <h1> New test </h1>
+
+            <%= f.text_area :input%>
+
+            <%= f.text_area :true_output %>
+
+            <%= f.select :task_id, Task.all.collect {|p| [p.title, p.id]}, {label: "Belongs to task"} %>
+
+            <%= f.submit "Create"%>
         <% end %>
-      </div>
+
 
 
     </div>

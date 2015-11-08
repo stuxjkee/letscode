@@ -5,17 +5,17 @@
       <div class="col-lg-7">
     <h1> Sign Up</h1>
     <div class="flash"> <%= flash[:notice] %></div>
-    <%= form_for @user do |t| %>
-        <%= t.label :first_name %> </br>
-        <%= t.text_field :first_name, class: "form-control"%></br>
-        <%= t.label :last_name %></br>
-        <%= t.text_field :last_name, class: "form-control"%></br>
-        <%= t.label :email %> </br>
-        <%= t.text_field :email, class: "form-control"%> </br>
-        <%= t.label :password %> </br>
-        <%= t.password_field :password, class: "form-control"%> </br>
-        <%= t.label :password_confirmation %> </br>
-        <%= t.password_field :password_confirmation, class: "form-control"%> </br>
+    <%= bootstrap_form_for @user do |t| %>
+
+        <%= t.text_field :first_name%>
+
+        <%= t.text_field :last_name%>
+
+        <%= t.text_field :email%>
+
+        <%= t.password_field :password%>
+
+        <%= t.password_field :password_confirmation%>
         <%= t.submit "Create", class: "btn" %>
     <% end %>
       </div>

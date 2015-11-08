@@ -4,14 +4,20 @@
     <div class="row">
       <div class="col-lg-7">
     <h1> Create topic</h1>
-    <%= form_for @topic do |f| %>
-        <%= f.label :title %> </br>
-        <%= f.text_field :title, class: "form-control" %> </br>
-        <%= f.label :code %> </br>
-        <%= f.text_area :code, class: "form-control" %> </br>
-            <%= f.label :course_id %> </br>
-            <%= f.text_field :course_id, class: "form-control" %> </br>
+
+
+
+    <%= bootstrap_form_for @topic do |f| %>
+
+
+
+        <%= f.text_field :title%>
+
+            <%= f.text_area :code %>
+
+            <%= f.select :course_id, Course.all.collect {|p| [p.title, p.id]}, {label: "Belongs to course"} %>
             <%= f.submit "Create", class: 'btn' %>
+
     <% end %>
       </div>
       <div class="col-lg-4 col-lg-offset-1">

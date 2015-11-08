@@ -10,14 +10,16 @@
         </tr>
       </thead>
       <tbody>
+      <% types = Hash[accepted: "danger", default: "warning", failed: "info"]%>
         <% @tasks.each do |task| %>
-            <tr class="danger" >
+
+            <tr class="<%= types[task.status(current_user)] %>" >
                 <td> <%= link_to task.id, task %></td>
                 <td> <%= link_to task.title, task %> </td>
                 <td> <%= task.solutions.count %> </td>
-                <% @solutions = Solution.where(task_id: 3, user_id: 1)%>
-                <   % status = @solutions.last.status ||= "Unpassed"%>
-                <td> <%= link_to @solutions.last.status, @solutions.last %> </td>
+
+
+                <td> <%= task.status(current_user) %> </td>
             </tr>
         <% end %>
       </tbody>

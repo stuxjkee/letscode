@@ -1,5 +1,6 @@
 class SolutionsController < ApplicationController
   def new
+    redirect_to '/login' unless current_user
     @task = Task.find(params[:task_id])
     @solution = Solution.new
 
@@ -11,19 +12,24 @@ class SolutionsController < ApplicationController
 
   def create
     @task = Task.find_by(params[:task_id])
-    @solution = @task.solutions.new(solution_params)
+    @solution = Solution.new(solution_params)
+    @solution.task_id = params[:task_id]
     @solution.user_id = current_user.id
 
     if pascal_compile(@solution.code)
       @solution.status = "Running"
       Thread.new do
         passed = run(@task.tests)
-        @solution.status = "#{passed} tests pased"
+        if passed == @task.tests.count
+          @solution.status = "success"
+        else
+          @solution.status = "failed"
+        end
         @solution.save
       end
 
     else
-      @solution.status = "Compilation error"
+      @solution.status = "failed"
     end
 
 

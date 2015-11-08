@@ -2,5 +2,5 @@
   <h1> <%= @task.title %> </h1>
   <p> <%= @task.condition %> </p>
   <%= link_to "Submit", controller: "solutions", action: "new", task_id: @task.id %>
-  <%= link_to "Statistic", action: "statistic", id: @task.id, remote: true %>
+  <%= link_to "Statistic", controller: "tasks", action: "statistic", id: @task.id%>
 </div>

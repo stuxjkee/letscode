@@ -1,4 +1,5 @@
 Letscode::Application.routes.draw do
+  get "admin/index"
   root 'courses#index'
 
   post 'courses/:id/' => 'courses#start', as: :start_course
@@ -8,7 +9,7 @@ Letscode::Application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
-  post 'tasks/new_test' => 'tasks#create_test', as: :create_test
+  post 'tasks/new_test' => 'tasks#create_test', as: :new_test
   get 'tasks/new_test' => 'tasks#new_test'
   resources :tasks
   resources :users
@@ -17,6 +18,8 @@ Letscode::Application.routes.draw do
   resources :topics
 
   get 'statistic/:id' => 'tasks#statistic'
+
+  get 'admin' => 'admin#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

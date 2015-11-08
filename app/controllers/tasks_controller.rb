@@ -23,7 +23,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      redirect_to '/'
+      redirect_to @task
     else
       redirect_to '/'
     end
@@ -46,17 +46,11 @@ class TasksController < ApplicationController
 
   def statistic
     @task = Task.find(params[:id])
-    @success_solutions = @task.solutions.where(status: "success")
-
-    respond_to do |format|
-      format.json
-      format.html
-    end
   end
 
   private
   def task_params
-    params.require(:task).permit(:title, :condition)
+    params.require(:task).permit(:title, :condition, :topic_id)
   end
 
   private
