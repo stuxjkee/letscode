@@ -7,7 +7,33 @@
         <h1> Tasks </h1>
         <%= bootstrap_form_for @task, layuot: :horizontal do |f| %>
             <%= f.text_field :title%>
-            <%= f.text_area :condition%>
+            <%= f.text_area :condition, class: 'wysihtml5' %>
+
+            <script type="text/javascript">
+
+                $(document).ready(function(){
+
+                    $('.wysihtml5').each(function(i, elem) {
+                        $(elem).wysihtml5({'toolbar': false});
+                        /*
+                         toolbar: {
+                         'font-styles': true,
+                         'color': false,
+                         'emphasis': {
+                         'small': true
+                         },
+                         'blockquote': true,
+                         'lists': true,
+                         'html': false,
+                         'link': true,
+                         'image': true,
+                         'smallmodals': false
+                         }
+                         */
+                    });
+
+                })
+            </script>
 
             <%= f.select :topic_id, Topic.all.collect {|p| [p.title, p.id]}, {label: "Belongs to topic"} %>
 

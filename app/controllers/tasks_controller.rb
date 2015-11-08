@@ -55,7 +55,7 @@ class TasksController < ApplicationController
 
   private
   def test_params
-    params.require(create_test_path).permit(:input, :true_output)
+    params.require(new_test_path).permit(:input, :true_output, :task_id)
   end
 
 end

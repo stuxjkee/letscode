@@ -8,19 +8,19 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-lg-4">
-        <div class="container">
+      <div class="col-lg-5">
+
             <h2> <%= @course.title %> </h2>
             <p> <%= @course.description %> </p>
-        </div>
+
       </div>
-      <div class="col-lg-5 col-lg-offset-3">
+      <div class="col-lg-4 col-lg-offset-2">
           <h2> Topics </h2>
           <table class="table">
             <tbody>
                 <% @course.topics.each do |topic| %>
                 <% tclass = "warning" %>
-                <% tclass = "danger" if progress && topic == progress.current_topic %>
+                <% tclass = "danger" if topic_passed?(topic, current_user) %>
                 <tr class="<%=tclass%>">
                   <td> <%= link_to topic.title, topic %></td>
                 </tr>

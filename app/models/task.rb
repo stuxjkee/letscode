@@ -17,6 +17,10 @@ class Task < ActiveRecord::Base
 
   end
 
+  def passed_by?(user)
+    user && self.solutions.where(status: "success", user_id: user.id).last
+  end
+
   def success_solutions
     self.solutions.where(status: "success")
   end

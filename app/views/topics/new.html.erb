@@ -1,8 +1,8 @@
 
 <div class="form">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-7">
+  <div class="container col-lg-5">
+
+
     <h1> Create topic</h1>
 
 
@@ -13,17 +13,41 @@
 
         <%= f.text_field :title%>
 
-            <%= f.text_area :code %>
+            <%= f.text_area :code, class: 'wysihtml5' %>
+
+            <script type="text/javascript">
+
+                $(document).ready(function(){
+
+                    $('.wysihtml5').each(function(i, elem) {
+                        $(elem).wysihtml5({'toolbar': {
+                            'font-styles': true,
+                            'color': false,
+                            'emphasis': {
+                                'small': true
+                            },
+                            'blockquote': true,
+                            'lists': true,
+                            'html': false,
+                            'link': true,
+                            'image': true,
+                            'smallmodals': false
+                        }});
+                        /*
+                         toolbar:
+                         */
+                    });
+
+                })
+            </script>
 
             <%= f.select :course_id, Course.all.collect {|p| [p.title, p.id]}, {label: "Belongs to course"} %>
             <%= f.submit "Create", class: 'btn' %>
 
     <% end %>
-      </div>
-      <div class="col-lg-4 col-lg-offset-1">
-       <%= link_to "Create task", controller: "tasks", action: "new" %>
-      </div>
-    </div>
+
+
+
   </div>
 
 </div>
