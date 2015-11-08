@@ -3,7 +3,6 @@ class SolutionsController < ApplicationController
     redirect_to '/login' unless current_user
     @task = Task.find(params[:task_id])
     @solution = Solution.new
-
   end
 
   def show
@@ -19,8 +18,8 @@ class SolutionsController < ApplicationController
     if pascal_compile(@solution.code)
       @solution.status = "Running"
       Thread.new do
-        passed = run(@task.tests)
-        if passed == @task.tests.count
+        passed = run(@solution.task.tests)
+        if passed == @solution.task.tests.count
           @solution.status = "success"
         else
           @solution.status = "failed"

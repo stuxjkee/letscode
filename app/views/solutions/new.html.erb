@@ -10,6 +10,7 @@
             <%= f.text_area :code, rows: "12", cols: "20" %>
 
             <%= hidden_field_tag :task_id, @task.id %>
+
             <%= f.submit "Submit", class: "btn" %>
         <% end %>
       </div>
